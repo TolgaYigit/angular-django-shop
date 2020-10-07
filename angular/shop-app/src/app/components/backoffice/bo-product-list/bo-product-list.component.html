@@ -1,0 +1,42 @@
+<span>
+  <button mat-button routerLink="/backoffice/product/add">
+    <mat-icon>add</mat-icon>
+    Add New
+  </button>
+</span>
+
+<mat-card class="mat-elevation-z25">
+  <mat-card-content>
+    <mat-table [dataSource]="products$">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.id }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.name }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef>Price</mat-header-cell>
+        <mat-cell *matCellDef="let product">{{ product.price }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef>Actions</mat-header-cell>
+        <mat-cell *matCellDef="let product">
+          <button mat-icon-button [routerLink]="'/backoffice/product/' + product.id">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="delete(product.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </mat-card-content>
+</mat-card>

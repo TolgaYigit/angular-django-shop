@@ -1,0 +1,53 @@
+<mat-card class="mat-elevation-z25">
+  <mat-card-content>
+    <form #productForm="ngForm">
+      <mat-form-field class="input-full-width">
+        <input
+          matInput
+          name="name"
+          placeholder="Name"
+          [(ngModel)]="product.name"
+          #productNameModel="ngModel"
+          required
+        />
+        <mat-error *ngIf="productNameModel?.errors?.required">This field is required.</mat-error>
+      </mat-form-field>
+      <mat-form-field class="input-full-width">
+        <input
+          type="number"
+          matInput
+          name="stock"
+          placeholder="Stock"
+          [(ngModel)]="product.stock"
+          #productStockModel="ngModel"
+          required
+        />
+        <mat-error *ngIf="productStockModel?.errors?.required">This field is required.</mat-error>
+      </mat-form-field>
+      <mat-form-field class="input-full-width">
+        <input
+          type="number"
+          matInput
+          name="price"
+          pattern="^\d{4}(\.\d{0,2})?$"
+          placeholder="Price"
+          [(ngModel)]="product.price"
+          #productPriceModel="ngModel"
+          required
+        />
+        <mat-error *ngIf="productPriceModel?.errors?.required">This field is required.</mat-error>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button
+      class="save-button"
+      [disabled]="productForm.invalid"
+      mat-button
+      (click)="upsertProduct()"
+    >
+      <mat-icon>save</mat-icon>
+      <span> Save </span>
+    </button>
+  </mat-card-actions>
+</mat-card>
