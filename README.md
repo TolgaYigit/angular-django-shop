@@ -28,6 +28,8 @@ $ docker exec -it dj bash
 $ python manage.py migrate
 ```
 
+The app will be available at http://localhost:8080
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
